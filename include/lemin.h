@@ -58,6 +58,16 @@ typedef struct		s_ants
 	struct s_ants	*prev;
 }					t_ants;
 
+typedef struct		s_bonus
+{
+	int				nb_coup;
+	enum
+	{
+		nul,
+		p
+	}				opt;
+}					t_bonus;
+
 /*
 **	ERREUR
 */
@@ -85,8 +95,9 @@ t_link				*link_del(t_link *lst_link);
 **	ALGO
 */
 void				bfs_start(t_graph *gr);
-void				ants_min(t_link *path);
-void				send_ants(t_graph *gr);
+void				ants_min(t_link *path, t_graph *gr);
+int					send_ants(t_graph *gr);
+int					check_path(t_link *path, t_graph *gr);
 
 /*
 **	DISPLAY
@@ -97,5 +108,11 @@ void				display(int d, char *str);
 **	DEL
 */
 t_graph				*del(t_graph *gr);
+
+/*
+**	OPTION
+*/
+int					get_bonus(char **av, int ac, t_bonus *bon);
+void				display_path(t_link *path, t_graph *gr, t_bonus bon);
 
 #endif

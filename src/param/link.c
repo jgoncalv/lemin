@@ -12,6 +12,20 @@
 
 #include "lemin.h"
 
+static int	check_hyphen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == '-')
+			i++;
+		str++;
+	}
+	return (i);
+}
+
 static int	check_name(t_room *lst_room, char *name)
 {
 	while (lst_room)
@@ -48,6 +62,8 @@ static int	add_link(t_room *room, char *r_name, char *l_name)
 		room = room->next;
 	while (room && ft_strcmp(link->name, l_name) != 0)
 		link = link->next;
+	if (!room || !link)
+		return (0);
 	if (!(room->lst_link = new_link(room->lst_link, link, NULL)))
 		return (0);
 	return (1);
@@ -61,23 +77,23 @@ void		lst_link(t_graph *gr, char *line)
 	if (!gr->room)
 		ft_error("Error : Missign room\n", gr);
 	if (!gr->start || !gr->end)
-		ft_error("Error : Missing start or end\n", gr);
-	if (ft_strchr(line, ' '))
+		ft_error("Error : Unconform\n", gr);
+	if (ft_strchr(line, ' ') || check_hyphen(line) != 1)
 		ft_error("Error : Unconform\n", gr);
 	tab = ft_strsplit(line, '-');
 	i = 0;
 	while (tab[i])
 		i++;
-	if (i != 2)
+	if (i != 2 || ft_strcmp(tab[0], tab[1]) == 0)
 		error_del_tab("Error : Unconform\n", tab, 1, gr);
-	if (!(check_name(gr->room, tab[0])) && !(check_name(gr->room, tab[1])))
+	else if (!(check_name(gr->room, tab[0])) || !(check_name(gr->room, tab[1])))
 		error_del_tab("Error : Room name doesn't exist\n", tab, 1, gr);
-	if (!(check_link(gr->room, tab[0], tab[1])))
+	else if (!(check_link(gr->room, tab[0], tab[1])))
 		error_del_tab("Error : Link already include\n", tab, 1, gr);
-	if (!(add_link(gr->room, tab[1], tab[0])) &&
+	else if (!(add_link(gr->room, tab[1], tab[0])) &&
 		!(add_link(gr->room, tab[0], tab[1])))
 		error_del_tab("Error : New link failed\n", tab, 1, gr);
-	if (!(add_link(gr->room, tab[0], tab[1])))
+	else if (!(add_link(gr->room, tab[0], tab[1])))
 		error_del_tab("Error : New link failed\n", tab, 1, gr);
 	error_del_tab("", tab, 0, gr);
 }

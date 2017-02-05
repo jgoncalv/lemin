@@ -24,79 +24,75 @@ LDLIBS = -lft
 
 SRC_PATH = src
 
-SRC_NAME = libft/ft_putchar.c\
-		libft/ft_putchar_fd.c\
-		libft/ft_putstr.c\
-		libft/ft_putnstr.c\
-		libft/ft_putstr_fd.c\
-		libft/ft_putnbr.c\
-		libft/ft_putnbr_fd.c\
-		libft/ft_putendl.c\
-		libft/ft_putendl_fd.c\
-		libft/ft_memset.c\
-		libft/ft_bzero.c\
-		libft/ft_memcpy.c\
-		libft/ft_memccpy.c\
-		libft/ft_memmove.c\
-		libft/ft_memchr.c\
-		libft/ft_memcmp.c\
-		libft/ft_memalloc.c\
-		libft/ft_memdel.c\
-		libft/ft_memjoin.c\
-		libft/ft_memjoinf.c\
-		libft/ft_strlen.c\
-		libft/ft_strdup.c\
-		libft/ft_strcpy.c\
-		libft/ft_strncpy.c\
-		libft/ft_strcat.c\
-		libft/ft_strncat.c\
-		libft/ft_strlcat.c\
-		libft/ft_strchr.c\
-		libft/ft_strrchr.c\
-		libft/ft_strstr.c\
-		libft/ft_strnstr.c\
-		libft/ft_strcmp.c\
-		libft/ft_strncmp.c\
-		libft/ft_strnew.c\
-		libft/ft_strdel.c\
-		libft/ft_strclr.c\
-		libft/ft_striter.c\
-		libft/ft_striteri.c\
-		libft/ft_strmap.c\
-		libft/ft_strmapi.c\
-		libft/ft_strequ.c\
-		libft/ft_strnequ.c\
-		libft/ft_strsub.c\
-		libft/ft_strjoin.c\
-		libft/ft_strtrim.c\
-		libft/ft_strsplit.c\
-		libft/ft_strtoupper.c\
-		libft/ft_atoi.c\
-		libft/ft_itoa.c\
-		libft/ft_isalpha.c\
-		libft/ft_isdigit.c\
-		libft/ft_isalnum.c\
-		libft/ft_isascii.c\
-		libft/ft_isprint.c\
-		libft/ft_toupper.c\
-		libft/ft_tolower.c\
-		libft/ft_lstnew.c\
-		libft/ft_lstdelone.c\
-		libft/ft_lstdel.c\
-		libft/ft_lstadd.c\
-		libft/ft_lstiter.c\
-		libft/ft_lstmap.c\
-		libft/ft_lstadd_end.c\
-		libft/ft_realloc.c\
-		libft/ft_tabnew.c\
-		libft/ft_tablen.c\
-		libft/ft_realloc_tab.c\
-		libft/ft_uitoa.c\
-		libft/ft_uitoa_base.c\
-		libft/ft_putwchar.c\
-		libft/ft_putwstr.c\
-		libft/ft_wstrlen.c\
-		libft/ft_wcharlen.c\
+SRC_NAME = put/ft_putchar.c\
+		put/ft_putchar_fd.c\
+		put/ft_putstr.c\
+		put/ft_putnstr.c\
+		put/ft_putstr_fd.c\
+		put/ft_putnbr.c\
+		put/ft_putnbr_fd.c\
+		put/ft_putendl.c\
+		put/ft_putendl_fd.c\
+		mem/ft_bzero.c\
+		mem/ft_memset.c\
+		mem/ft_memcpy.c\
+		mem/ft_memccpy.c\
+		mem/ft_memmove.c\
+		mem/ft_memchr.c\
+		mem/ft_memcmp.c\
+		mem/ft_memalloc.c\
+		mem/ft_memdel.c\
+		mem/ft_memjoin.c\
+		mem/ft_memjoinf.c\
+		str/ft_strlen.c\
+		str/ft_strdup.c\
+		str/ft_strcpy.c\
+		str/ft_strncpy.c\
+		str/ft_strcat.c\
+		str/ft_strncat.c\
+		str/ft_strlcat.c\
+		str/ft_strchr.c\
+		str/ft_strrchr.c\
+		str/ft_strstr.c\
+		str/ft_strnstr.c\
+		str/ft_strcmp.c\
+		str/ft_strncmp.c\
+		str/ft_strnew.c\
+		str/ft_strdel.c\
+		str/ft_strclr.c\
+		str/ft_striter.c\
+		str/ft_striteri.c\
+		str/ft_strmap.c\
+		str/ft_strmapi.c\
+		str/ft_strequ.c\
+		str/ft_strnequ.c\
+		str/ft_strsub.c\
+		str/ft_strjoin.c\
+		str/ft_strtrim.c\
+		str/ft_strsplit.c\
+		str/ft_strtoupper.c\
+		convert/ft_atoi.c\
+		convert/ft_itoa.c\
+		is/ft_isalpha.c\
+		is/ft_isdigit.c\
+		is/ft_isalnum.c\
+		is/ft_isascii.c\
+		is/ft_isprint.c\
+		is/ft_toupper.c\
+		is/ft_tolower.c\
+		lst/ft_lstnew.c\
+		lst/ft_lstdelone.c\
+		lst/ft_lstdel.c\
+		lst/ft_lstadd.c\
+		lst/ft_lstiter.c\
+		lst/ft_lstmap.c\
+		lst/ft_lstadd_end.c\
+		str/ft_realloc.c\
+		tab/ft_tabnew.c\
+		tab/ft_tablen.c\
+		tab/ft_realloc_tab.c\
+		convert/ft_uitoa.c\
+		convert/ft_uitoa_base.c\
 		printf/ft_printf.c\
 		printf/ft_printf_check.c\
 		printf/ft_printf_modifier.c\
@@ -109,7 +105,11 @@ SRC_NAME = libft/ft_putchar.c\
 		printf/ft_printf_wc.c\
 		printf/ft_printf_p.c\
 		printf/ft_printf_dioux.c\
-		libft/ft_putnwstr.c\
+		wchar/ft_wstrlen.c\
+		wchar/ft_wcharlen.c\
+		wchar/ft_putwchar.c\
+		wchar/ft_putwstr.c\
+		wchar/ft_putnwstr.c\
 		gnl/get_next_line.c\
 
 AR = ar rc

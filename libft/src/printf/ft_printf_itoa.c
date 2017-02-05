@@ -102,9 +102,10 @@ int			ft_printf_itoa(intmax_t n, t_flag *flag)
 	int		sign;
 	char	*str;
 
-	sign = 1;
-	if (n < 0)
-		sign = -1;
+	str = NULL;
+	len = 0;
+	lenc = 0;
+	sign = (n < 0 ? -1 : 1);
 	len = ft_add_prefix(flag, n);
 	len = ft_add_len(len, flag, n);
 	lenc = len;

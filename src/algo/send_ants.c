@@ -47,7 +47,8 @@ static t_ants	*move_start_ants(t_ants *lants, t_graph *gr)
 		i = 0;
 		while (path && gr->start->ants - i > 0)
 		{
-			if (path->link->path && path->link->ants_min < gr->start->ants)
+			if ((path->link->path || path->link == gr->end)
+				&& path->link->ants_min <= gr->start->ants)
 			{
 				if (!(lants = add_ants(lants, path->link, id)))
 					ft_error("Error\n", gr);
@@ -62,16 +63,20 @@ static t_ants	*move_start_ants(t_ants *lants, t_graph *gr)
 	return (lants);
 }
 
-void			send_ants(t_graph *gr)
+int				send_ants(t_graph *gr)
 {
 	t_ants		*lants;
+	int			i;
 
 	lants = NULL;
+	i = 0;
 	while (gr->end->ants != gr->n_ants)
 	{
 		move_ants(lants);
 		lants = move_start_ants(lants, gr);
 		ft_putchar('\n');
+		i++;
 	}
 	del_ants(lants);
+	return (i);
 }

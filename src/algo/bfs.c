@@ -19,11 +19,10 @@ static t_link	*bfs_init(t_link *path, t_graph *gr)
 	link_start = gr->start->lst_link;
 	while (link_start)
 	{
-		if (link_start->link == gr->end)
-			return (NULL);
-		if (!link_start->link->path)
-			if (!(path = new_link(path, link_start->link, NULL)))
-				return (NULL);
+		if (link_start->link != gr->end)
+			if (!link_start->link->path)
+				if (!(path = new_link(path, link_start->link, NULL)))
+					return (NULL);
 		link_start = link_start->next;
 	}
 	return (path);
@@ -90,4 +89,6 @@ void			bfs_start(t_graph *gr)
 		path = bfs_init(path, gr);
 	}
 	path = link_del(path);
+	if (check_path(gr->start->lst_link, gr) == 0)
+		ft_error("Error : No path start to end\n", gr);
 }

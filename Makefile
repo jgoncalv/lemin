@@ -27,6 +27,7 @@ LDLIBS = -lft
 SRC_PATH = src
 
 SRC_NAME = main.c\
+		bonus.c\
 		param/param.c\
 		param/list.c\
 		param/link.c\
@@ -50,7 +51,7 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-all: $(NAME) $(NAME2)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIB)
@@ -64,6 +65,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@$(CC) $(CFLAGS) $(CPPFLAGS) $(INC_LIB) -o $@ -c $<
 
 clean:
+	@make fclean -C $(LIB)
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH) || true
 	@echo $(OBJ_PATH)" supprimé !"
