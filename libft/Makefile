@@ -80,6 +80,7 @@ SRC_NAME = put/ft_putchar.c\
 		is/ft_isprint.c\
 		is/ft_toupper.c\
 		is/ft_tolower.c\
+		is/ft_isint.c\
 		lst/ft_lstnew.c\
 		lst/ft_lstdelone.c\
 		lst/ft_lstdel.c\

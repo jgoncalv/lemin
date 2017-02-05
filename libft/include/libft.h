@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <stdint.h>
+# include <limits.h>
 
 typedef	struct		s_list
 {
@@ -89,6 +90,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isint(char *str);
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *str);

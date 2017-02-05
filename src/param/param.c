@@ -14,20 +14,10 @@
 
 static t_graph	*nb_ants(t_graph *gr, char *line)
 {
-	int			i;
-	long long	nbr;
-
-	i = 0;
-	nbr = 0;
-	while (line[i])
-	{
-		if (!ft_isdigit(line[i]))
-			ft_error("Error : Unconform\n", gr);
-		if ((nbr = nbr * 10 + (line[i] - '0')) <= 0 || nbr > INT_MAX)
-			ft_error("Error : Not the good size of ants\n", gr);
-		i++;
-	}
-	gr->n_ants = ft_atoi(line);
+	if (!ft_isint(line))
+		ft_error("Error : Nb of ants does not fit in an int or isn't\n", gr);
+	if ((gr->n_ants = ft_atoi(line)) <= 0)
+		ft_error("Error : Not the good size of ants\n", gr);
 	return (gr);
 }
 
@@ -88,6 +78,7 @@ void			get_anthill(t_graph *gr)
 	char	c;
 
 	line = NULL;
+	c = '\0';
 	while (get_next_line(0, &line) == 1)
 	{
 		if (!(gr->anthill = anthilltostr(gr->anthill, line)))
@@ -96,9 +87,7 @@ void			get_anthill(t_graph *gr)
 			c = 's';
 		else if (ft_strcmp(line, "##end") == 0)
 			c = 'e';
-		else if (*line == '#')
-			;
-		else
+		else if (*line != '#')
 		{
 			param(gr, line, c);
 			if (c)

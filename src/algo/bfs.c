@@ -82,7 +82,7 @@ void			bfs_start(t_graph *gr)
 
 	path = NULL;
 	if (!(path = bfs_init(path, gr)))
-		return ;
+		ft_error("Error : No path\n", gr);
 	while (breadth_first_search(path, path, gr) == 1)
 	{
 		path = link_del(path);

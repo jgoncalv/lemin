@@ -12,19 +12,28 @@
 
 #include "lemin.h"
 
+static void	d_path(int nb, char *str)
+{
+	ft_putstr("Lmin=");
+	ft_putnbr(nb);
+	ft_putstr("  ");
+	ft_putstr(str);
+	ft_putchar('-');
+}
+
 void		display_path(t_link *path, t_graph *gr, t_bonus bon)
 {
 	t_room *tmp;
 
-	ft_printf("\nMove=%d", bon.nb_coup);
+	ft_putstr("\nMove=");
+	ft_putnbr(bon.nb_coup);
 	if (path)
 		ft_putstr("\n\nPath :\n");
 	while (path)
 	{
 		if (path->link->path || path->link == gr->end)
 		{
-			ft_printf("Lmin=%d  %s-",
-				path->link->ants_min, gr->start->name);
+			d_path(path->link->ants_min, gr->start->name);
 			tmp = path->link;
 			while (tmp)
 			{

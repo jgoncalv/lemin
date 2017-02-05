@@ -22,13 +22,13 @@ static int		fillstr(char **str, char *buf, int ret)
 	else
 	{
 		tmp = ft_strdup(*str);
-		free(*str);
+		ft_strdel(str);
 		*str = (char*)malloc(sizeof(char) * (ft_strlen(tmp) + ret + 1));
 		if (*str == NULL)
 			return (-1);
 		ft_strcpy(*str, tmp);
 		ft_strcat(*str, buf);
-		free(tmp);
+		ft_strdel(&tmp);
 	}
 	return (0);
 }
@@ -48,13 +48,12 @@ static int		last(char **str, char **line, char *nl)
 	if (nl[1] == '\0')
 	{
 		ft_strdel(str);
-		*str = NULL;
 		return (1);
 	}
 	tmp = ft_strdup(nl + 1);
-	free(*str);
+	ft_strdel(str);
 	*str = ft_strdup(tmp);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (1);
 }
 
@@ -118,7 +117,7 @@ int				get_next_line(const int fd, char **line)
 	if (nl != NULL)
 		return (last(&(curr->str), line, nl));
 	*line = ft_strdup(curr->str);
-	free(curr->str);
+	ft_strdel(&curr->str);
 	curr->str = NULL;
 	return (1);
 }

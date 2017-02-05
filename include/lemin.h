@@ -15,9 +15,6 @@
 
 # include "libft.h"
 # include "get_next_line.h"
-# include "limits.h"
-# include "stdio.h"
-# include "ft_printf.h"
 
 typedef struct s_link	t_link;
 
