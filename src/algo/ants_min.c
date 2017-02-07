@@ -31,31 +31,26 @@ static t_ants	*add_lst_ants(t_ants *ants, t_room *room)
 	return (ants);
 }
 
-static t_ants	*ft_sort(t_ants *ants)
+static void		ft_sort(t_ants *ants)
 {
-	t_ants	*tmp;
-	t_ants	*tmpnext;
-	t_room	*roomtmp;
+	t_ants	*tants;
+	t_room	*tmp;
 
-	tmp = ants;
-	while (tmp && tmp->next)
+	while (ants && ants->next)
 	{
-		tmpnext = tmp->next;
-		while (tmpnext && tmp->next)
+		tants = ants->next;
+		while (tants)
 		{
-			if (tmp->room->path_len > tmpnext->room->path_len)
+			if (ants->room->path_len > tants->room->path_len)
 			{
-				roomtmp = tmp->room;
-				tmp->room = tmpnext->room;
-				tmpnext->room = roomtmp;
+				tmp = ants->room;
+				ants->room = tants->room;
+				tants->room = tmp;
 			}
-			tmpnext = tmpnext->next;
+			tants = tants->next;
 		}
-		tmp = tmp->next;
+		ants = ants->next;
 	}
-	while (ants && ants->prev != NULL)
-		ants = ants->prev;
-	return (ants);
 }
 
 static void		del_ants(t_ants *ants)
@@ -68,7 +63,8 @@ static void		del_ants(t_ants *ants)
 
 static void		calc_ants_min(t_ants *path)
 {
-	int	i;
+	t_ants	*tmp;
+	int		i;
 
 	i = 0;
 	while (path)
@@ -76,10 +72,17 @@ static void		calc_ants_min(t_ants *path)
 		if (path->prev == NULL)
 			path->room->ants_min = 0;
 		else
-			path->room->ants_min = path->room->path_len +
-		path->prev->room->ants_min - i;
-		path = path->next;
+		{
+			tmp = path->prev;
+			while (tmp)
+			{
+				path->room->ants_min += ((path->room->path_len + 1)
+					- (tmp->room->path_len + 1));
+				tmp = tmp->prev;
+			}
+		}
 		i++;
+		path = path->next;
 	}
 }
 
@@ -96,7 +99,7 @@ void			ants_min(t_link *path, t_graph *gr)
 			ants = add_lst_ants(ants, tmp->link);
 		tmp = tmp->next;
 	}
-	ants = ft_sort(ants);
+	ft_sort(ants);
 	calc_ants_min(ants);
 	del_ants(ants);
 }

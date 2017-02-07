@@ -39,26 +39,23 @@ static t_ants	*move_start_ants(t_ants *lants, t_graph *gr)
 {
 	t_link		*path;
 	static int	id = 1;
-	int			i;
 
 	if (gr->start->ants > 0)
 	{
 		path = gr->start->lst_link;
-		i = 0;
-		while (path && gr->start->ants - i > 0)
+		while (path && gr->start->ants > 0)
 		{
 			if ((path->link->path || path->link == gr->end)
-				&& path->link->ants_min <= gr->start->ants)
+				&& path->link->ants_min < gr->start->ants)
 			{
 				if (!(lants = add_ants(lants, path->link, id)))
 					ft_error("Error\n", gr);
 				display(id, path->link->name);
 				id++;
-				i++;
+				gr->start->ants--;
 			}
 			path = path->next;
 		}
-		gr->start->ants -= i;
 	}
 	return (lants);
 }

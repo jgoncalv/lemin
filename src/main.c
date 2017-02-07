@@ -48,6 +48,32 @@ void			display(int d, char *str)
 	ft_putchar(' ');
 }
 
+static void		ft_tri(t_link *path)
+{
+	t_link	*tpath;
+	t_room	*tmp;
+	t_link	*ttmp;
+
+	while (path)
+	{
+		tpath = path->next;
+		while (tpath)
+		{
+			if (path->link->ants_min > tpath->link->ants_min)
+			{
+				tmp = path->link;
+				ttmp = path->parent;
+				path->link = tpath->link;
+				path->parent = tpath->parent;
+				tpath->parent = ttmp;
+				tpath->link = tmp;
+			}
+			tpath = tpath->next;
+		}
+		path = path->next;
+	}
+}
+
 int				main(int ac, char **av)
 {
 	t_graph	*gr;
@@ -61,6 +87,7 @@ int				main(int ac, char **av)
 	write(1, gr->anthill, ft_strlen(gr->anthill));
 	ft_putchar('\n');
 	ants_min(gr->start->lst_link, gr);
+	ft_tri(gr->start->lst_link);
 	bonus.nb_coup = send_ants(gr);
 	if (bonus.opt == p)
 		display_path(gr->start->lst_link, gr, bonus);

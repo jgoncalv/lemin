@@ -36,6 +36,7 @@ struct				s_link
 	t_room			*link;
 	t_link			*parent;
 	struct s_link	*next;
+	struct s_link	*prev;
 };
 
 typedef	struct		s_graph

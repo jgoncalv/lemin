@@ -63,7 +63,7 @@ static int	option(char *str, t_bonus *bon)
 	}
 	if (i != 0)
 	{
-		ft_putstr_fd("Usage : ./lem-in -option <map\n", 2);
+		ft_putstr_fd("Usage : ./lem-in -option < map\n", 2);
 		ft_putstr_fd("Option : p = show path\n", 2);
 		return (0);
 	}
